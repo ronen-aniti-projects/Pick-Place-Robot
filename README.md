@@ -1,9 +1,10 @@
 # Developing a Small Differential Drive Mobile Pick and Place Robot for Color Block Detection and Delivery
 
 ## The Overview of the Pick and Place Robot
-Hardware, software, objective, motivation. 
+Objective, motivation. 
 
-## The Architecture of the Robot
+## The Architecture of the Robot System
+State what the robot system comprises (what subsystems). 
 
 ### The Finite State Machine Subsystem
 
@@ -26,6 +27,10 @@ Output: Physical Motion that Approximates the Motion Model Assumptions.
 
 Show: The motion model dR and dPsi as actions, x, y, psi as state.
 
+### The Path Planning Subsystem
+This involves planning a straight line path. Pivot. Move straight. Pivot to avoid obstacles. 
+Goal: Target Block or Goal Pose.
+
 ### The Localization and Relocalization Subsystem
 Input: The Current State Estimate
 Output: An Updated State Estimate
@@ -37,5 +42,16 @@ Show: The Dead Reckoning Subsystem math.
 Show: The 
 
 ### Putting the Pick and Place Robot to the Test
+
+#### Integrated Test: Approach of a Block with Obstacles
+Test: All three colors. all 4 quadrants relative to start pose. 
+
+Show: Robot point of view camera with ROI and CV2 Put Text for "Target: Red, Pivot Angle: 2 Deg Left, Drawn Bounding Box." Show also trajectory image: Model map image along with estimated actions on map.
+
+#### Integrated Test: Delivery of a Block with Obstacles 
+
+Show: Robot point of view camera with ROI and CV2 put text for "Moving to construction zone; Obstacle detected/not detected; If obstacle detected, then corrective action: Pivoting 5 degrees left...Moving 6 inches forward...Replanning to construction zone".
+
+#### Final Footage
 
 Show: A video from the robot's point of view of a complete run. 
