@@ -1,37 +1,72 @@
 # Developing a Small Differential Drive Mobile Pick and Place Robot for Color Block Detection and Delivery
 
-## The Overview of the Pick and Place Robot
-Objective, motivation. 
+## The Achievement of the Pick and Place Robot
+I have designed a pick and place robot capable of delivering nine colored blocks from scattered locations on the floor to a particular location on the floor without colliding with blocks or walls and within 10 minutes. 
 
 ## The Architecture of the Robot System
-State what the robot system comprises (what subsystems). 
+The robot I have developed comprises a finite state machine subsystem, a perception subsystem, a motion control subsystem, a path planning subsystem, and a navigation subsystem. These subsytems work together.  
 
 ### The Finite State Machine Subsystem
+Inputs: System State, External Measurements
+
+Outputs: State Transition
+
+Show: State Transition Diagram. 
 
 ### The Perception Subsystems
+The perception subsystems comprise the color block tracking system and the obstacle avoidance subsystem. The purpose of the system as a whole is to take measurements that are useful to completing the robot's mission. The color block tracking subsystem is meant to identify an appropriate local-area motion plan to the target block. The obstacle avoidance subsystem is meant to steer the robot away from obstacles in its path and also meant to stop it from colliding with walls. 
+
+Show: Picture of the relevant hardware. 
 
 #### Color Block Tracking Subsystem
-Input: Camera image, target color
-Output: Bounding box, pivot angle.
+Input: Camera Image, Target Color Flag
 
-Show: Calibration curves for distance, even if not used.
+Output: Whether Target Identified in Image, Estimated Pivot Angle to Target.
+
+Action: Pivot
+
+Show: Image showing the array to the target color and the pivot angle. Explain the calibration ratio used. 
 
 #### Obstacle Avoidance Subsystem
+The obstacle avoidance subsystem comprises the wall avoidance subsystem and the block avoidance subsystem. 
 
-The wall avoidance subsystem.
+##### The wall avoidance subsystem.
+Input: Sonar Estimation
 
-The block avoidance subsystem.
+Output: Wall Infront Flag
+
+Action: Stop Robot
+
+Show: Robot driving to wall but stopping early.
+
+##### The block avoidance subsystem.
+Input: Camera Image
+
+Output: Block Danger Flag
+
+Action: Stop the Robot, Pivot Left or Right, Move Forward. 
+
 ### The Motion Control Subsystem
+
 Input: Motion Primitive Selection, Primitive Parameter. 
-Output: Physical Motion that Approximates the Motion Model Assumptions. 
+
+Output: Motion Description Flag
+
+Action: Pivot or Straight Motion
+
+Sensors: Optical Encoders 
+
+Actuators: DC Motors, H-Bridge Motor Driver.
 
 Show: The motion model dR and dPsi as actions, x, y, psi as state.
+
+Show: Picture of the relevant hardware.
 
 ### The Path Planning Subsystem
 This involves planning a straight line path. Pivot. Move straight. Pivot to avoid obstacles. 
 Goal: Target Block or Goal Pose.
 
-### The Localization and Relocalization Subsystem
+### The Navigation Subsystem
 Input: The Current State Estimate
 Output: An Updated State Estimate
 Logic: Perform Sonar Scanning to Relocalize the Vehicle when the estimate nears the top right corner of the map.  
